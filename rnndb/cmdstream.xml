@@ -50,11 +50,11 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
 <enum name="PRIMITIVE_TYPE">
     <value value="1" name="POINTS" brief="Points (GL_POINTS)"/>
     <value value="2" name="LINES" brief="Lines (GL_LINES)"/>
-    <value value="3" name="LINE_STRIP" brief="Line strip (GL_LINE_STRIP)"/>
+    <value value="3" name="LINE_LOOP" brief="Line loop (GL_LINE_LOOP)"/>
     <value value="4" name="TRIANGLES" brief="Triangles (GL_TRIANGLES)"/>
     <value value="5" name="TRIANGLE_STRIP" brief="Triangle strip (GL_TRIANGLE_STRIP)"/>
     <value value="6" name="TRIANGLE_FAN" brief="Triangle fan (GL_TRIANGLE_FAN)"/>
-    <value value="7" name="LINE_LOOP" brief="Line loop (GL_LINE_LOOP)"/>
+    <value value="7" name="LINE_STRIP" brief="Line strip (GL_LINE_STRIP)"/>
     <value value="8" name="QUADS" brief="Quadliterals (GL_QUADS)">
         <doc>Only supported when RECT_PRIMITIVE feature bit is set.</doc>
     </value>
