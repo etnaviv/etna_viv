@@ -575,17 +575,18 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x01048" name="ICACHE_PREFETCH" brief="Trigger icache prefetch"/>
         <reg32 offset="0x0104C" name="ICACHE_PREFETCH_INSTRUCTIONS" brief="Number of instructions to prefetch"/>
         <reg32 offset="0x01054" name="MSAA_CONFIG"> <!-- MSAA_FRAGMENT_OPERATION -->
+            <bitfield high="3" low="0" name="SAMPLE_MASK"/>
+            <bitfield pos="7" name="SAMPLE_MASK_MASK"/>
+            <bitfield pos="8" name="SAMPLE_MASK_ENABLE"/>
+            <bitfield pos="11" name="SAMPLE_MASK_ENABLE_MASK"/>
             <bitfield pos="12" name="ALPHA_TO_COVERAGE"/>
             <bitfield pos="15" name="ALPHA_TO_COVERAGE_MASK"/>
-
-            <!-- Multisampling related masked state.
-                 6fffffff SAMPLE_COVERAGE
-                 f70fffff SAMPLE_COVERAGE_VALUE
-                 fff6ffff ?
-                 ffff6fff ALPHA_TO_COVERAGE
-                 fffff6ff SAMPLE_MASK
-                 ffffff7f ?
-             -->
+            <bitfield pos="16" name="SAMPLE_COVERAGE_INVERT"/>
+            <bitfield pos="19" name="SAMPLE_COVERAGE_INVERT_MASK"/>
+            <bitfield high="24" low="20" name="SAMPLE_COVERAGE_VALUE"/>
+            <bitfield pos="27" name="SAMPLE_COVERAGE_VALUE_MASK"/>
+            <bitfield pos="28" name="SAMPLE_COVERAGE"/>
+            <bitfield pos="31" name="SAMPLE_COVERAGE_MASK"/>
         </reg32>
         <reg32 offset="0x01058" name="SAMPLER_BASE" brief="Offset value applied to sampler index from PS"/> <!-- HALTI5 -->
         <reg32 offset="0x01060" name="ALPHA_TO_COVERAGE_DITHER" length="8" stride="4"> <!-- MSAA_FRAGMENT_OPERATION -->
