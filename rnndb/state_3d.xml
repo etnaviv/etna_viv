@@ -154,6 +154,15 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <value value="6" name="I16"/>
     </enum>
 
+    <bitset name="RT_CONFIG">
+        <bitfield high="15" low="0" name="STRIDE"/>
+        <bitfield high="25" low="20" name="FORMAT" type="PE_FORMAT"/>
+        <bitfield pos="26" name="UNK26"/>
+        <bitfield pos="24" name="TS_MODE" type="TS_MODE"/>
+        <bitfield pos="28" name="SUPER_TILED"/>
+        <bitfield pos="29" name="UNK29"/>
+    </bitset>
+
     <bitset name="VARYING_NUM_COMPONENTS">
         <bitfield high="2" low="0" name="VAR0"/>
         <bitfield high="6" low="4" name="VAR1"/>
@@ -547,7 +556,12 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
     <stripe name="PS" brief="Pixel Shader states">
         <doc>The Pixel (Fragment) shader to use is configured here</doc>
         <reg32 offset="0x01000" name="END_PC" value="0x00000000"/>
-        <reg32 offset="0x01004" name="OUTPUT_REG" value="0x00000000" brief="Register that will contain output color"/>
+        <reg32 offset="0x01004" name="OUTPUT_REG" value="0x00000000" brief="Register that will contain output colors">
+            <bitfield high="6" low="0" name="0" type="uint"/>
+            <bitfield high="14" low="8" name="1" type="uint"/>
+            <bitfield high="22" low="16" name="2" type="uint"/>
+            <bitfield high="30" low="24" name="3" type="uint"/>
+        </reg32>
         <reg32 offset="0x01008" name="INPUT_COUNT" value="0x00000000">
             <bitfield high="4" low="0" name="COUNT" type="uint" brief="Number of PS inputs"/>
             <bitfield high="12" low="8" name="UNK8" type="uint"/>
@@ -574,10 +588,14 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <!-- The following is used with unified uniforms (SH_UNIFORM_*) -->
         <reg32 offset="0x01024" name="UNIFORM_BASE" brief="Offset applied to PS uniform loads (granularity is 4-vectors)"/> <!-- -->
         <reg32 offset="0x01028" name="INST_ADDR" type="VIVM" brief="Memory address of shader instructions, must be aligned to 0x100"/> <!-- ICACHE -->
-        <reg32 offset="0x0102C" name="CONTROL2">
+        <reg32 offset="0x0102C" name="OUTPUT_REG2" value="0x00000000" brief="Register that will contain output colors">
+            <bitfield high="6" low="0" name="4" type="uint"/>
             <bitfield pos="7" name="SATURATE_RT4"/>
+            <bitfield high="14" low="8" name="5" type="uint"/>
             <bitfield pos="15" name="SATURATE_RT5"/>
+            <bitfield high="22" low="16" name="6" type="uint"/>
             <bitfield pos="23" name="SATURATE_RT6"/>
+            <bitfield high="30" low="24" name="7" type="uint"/>
             <bitfield pos="31" name="SATURATE_RT7"/>
         </reg32>
         <reg32 offset="0x01030" name="CONTROL_EXT">
@@ -843,9 +861,12 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <!-- length="pixelPipes" -->
             <reg32 offset="0x1460" name="COLOR_ADDR" value="0x00000000" type="VIVM"/>
             <reg32 offset="0x1480" name="DEPTH_ADDR" value="0x00000000" type="VIVM"/>
-            <reg32 offset="0x1500" name="ADDR_UNK01500" value="0x00000000" type="VIVM"/>
-            <reg32 offset="0x1520" name="ADDR_UNK01520" value="0x00000000" type="VIVM"/>
-            <reg32 offset="0x1540" name="ADDR_UNK01540" value="0x00000000" type="VIVM"/>
+        </stripe>
+        <!-- Multiple render targets (color attachments).
+                These figure output 1..N as index 0..N-1.
+        -->
+        <stripe name="RT_ADDR_4" length="3" stride="0x20"> <!-- numRT == 4 -->
+            <reg32 offset="0x01500" name="PIPE" length="3" stride="4" type="VIVM"/>
         </stripe>
         <reg32 offset="0x014A0" name="STENCIL_CONFIG_EXT" value="0x00000000" masked="yes">
             <bitfield high="7" low="0" name="REF_BACK" brief="glStencilFunc ref (GL_BACK)"/>
@@ -907,30 +928,50 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         </reg32>
         <reg32 offset="0x014C0" name="HALTI4_UNK014C0"/> <!-- HALTI4 -->
         <reg32 offset="0x014C4" name="ROBUSTNESS_UNK014C4"/> <!-- ROBUSTNESS -->
-        <reg32 offset="0x01580" name="UNK01580" value="0x00000000" length="3" stride="4"/>
         <!-- Multiple render targets (color attachments).
              These figure output 1..N as index 0..N-1.
          -->
-        <stripe name="RT_ADDR" length="8" stride="0x20">
+        <reg32 offset="0x01580" name="RT_CONFIG_4" type="RT_CONFIG" length="3" stride="4"/> <!-- numRT == 4 -->
+        <stripe name="RT_ADDR_8" length="8" stride="0x20"> <!-- numRT == 8 -->
             <reg32 offset="0x14800" name="PIPE" length="8" stride="4" type="VIVS"/>
         </stripe>
-        <reg32 offset="0x14900" name="RT_CONFIG" length="8" stride="4">
-            <bitfield high="15" low="0" name="STRIDE"/>
-            <!-- Likely per-output format flags -->
-            <bitfield high="20" low="16" name="FORMAT" type="PE_FORMAT"/>
-            <bitfield pos="26" name="SUPER_TILED"/>
-            <bitfield pos="28" name="UNK28"/>
-        </reg32>
-
+        <reg32 offset="0x14900" name="RT_CONFIG_8" type="RT_CONFIG" length="8" stride="4"/> <!-- numRT == 8 -->
         <!-- HALTI5 extra per-RT state -->
-        <reg32 offset="0x14920" name="HALTI5_UNK14920" length="7" stride="4">
+        <reg32 offset="0x14920" name="HALTI5_RT_COLORMASK" length="7" stride="4">
             <bitfield high="7" low="4" name="COMPONENTS" type="RGBA_BITS"/>
-            <bitfield pos="8" name="UNK8"/>
+            <bitfield pos="8" name="OVERWRITE" brief="Set to 1 when destination fully overwritten, so no alpha blending and masked components"/>
         </reg32>
-        <reg32 offset="0x14940" name="HALTI5_UNK14940" length="7" stride="4"/>
-        <reg32 offset="0x14960" name="HALTI5_UNK14960" length="7" stride="4"/>
-        <reg32 offset="0x14980" name="HALTI5_UNK14980" length="7" stride="4"/>
-        <reg32 offset="0x149A0" name="HALTI5_UNK149A0" length="7" stride="4"/>
+        <reg32 offset="0x14940" name="HALTI5_RT_ALPHA_OP" length="7" stride="4">
+            <bitfield pos="0" name="ALPHA_TEST"/>
+            <bitfield high="6" low="4" name="ALPHA_FUNC" type="COMPARE_FUNC"/>
+            <bitfield high="31" low="16" name="ALPHA_REF"/>
+        </reg32>
+        <reg32 offset="0x14960" name="HALTI5_RT_ALPHA_CONFIG" length="7" stride="4" masked="yes">
+            <bitfield pos="0" name="BLEND_ENABLE_COLOR" brief="Enable alpha blending"/>
+            <bitfield pos="1" name="BLEND_ENABLE_COLOR_MASK"/>
+            <bitfield pos="2" name="SRC_FUNC_COLOR_MASK"/>
+            <bitfield pos="3" name="DST_FUNC_COLOR_MASK"/>
+            <bitfield high="7" low="4" name="SRC_FUNC_COLOR" type="BLEND_FUNC"/>
+            <bitfield high="11" low="8" name="DST_FUNC_COLOR" type="BLEND_FUNC"/>
+            <bitfield high="14" low="12" name="EQ_COLOR" type="BLEND_EQ"/>
+            <bitfield pos="15" name="EQ_COLOR_MASK"/>
+            <bitfield pos="16" name="BLEND_SEPARATE_ALPHA" brief="Enable separate blending for alpha"/>
+            <bitfield pos="17" name="BLEND_SEPARATE_ALPHA_MASK"/>
+            <bitfield pos="18" name="SRC_FUNC_ALPHA_MASK"/>
+            <bitfield pos="19" name="DST_FUNC_ALPHA_MASK"/>
+            <bitfield high="23" low="20" name="SRC_FUNC_ALPHA" type="BLEND_FUNC"/>
+            <bitfield high="27" low="24" name="DST_FUNC_ALPHA" type="BLEND_FUNC"/>
+            <bitfield high="30" low="28" name="EQ_ALPHA" type="BLEND_EQ"/>
+            <bitfield pos="31" name="EQ_ALPHA_MASK"/>
+        </reg32>
+        <reg32 offset="0x14980" name="HALTI5_RT_ALPHA_COLOR_EXT0" length="7" stride="4">
+            <bitfield high="15" low="0" name="B" type="float"/> <!-- 16-bit float -->
+            <bitfield high="31" low="16" name="G" type="float"/> <!-- 16-bit float -->
+        </reg32>
+        <reg32 offset="0x149A0" name="HALTI5_RT_ALPHA_COLOR_EXT1" length="7" stride="4">
+            <bitfield high="15" low="0" name="R" type="float"/> <!-- 16-bit float -->
+            <bitfield high="31" low="16" name="A" type="float"/> <!-- 16-bit float -->
+        </reg32>
 
         <reg32 offset="0x149C0" name="ROBUSTNESS_UNK149C0" length="8" stride="4"/> <!-- ROBUSTNESS -->
     </stripe>
@@ -1173,12 +1214,17 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         </stripe>
         <!-- Multiple render targets (color attachments) -->
         <stripe name="RT" length="8" stride="4"> <!-- HALTI2 -->
-            <reg32 offset="0x017A0" name="UNK017A0"/>
+            <reg32 offset="0x017A0" name="CONFIG">
+                <bitfield pos="0" name="ENABLE"/>
+                <bitfield pos="1" name="COLOR_AUTO_DISABLE"/>
+                <bitfield pos="2" name="COMPRESSION"/>
+                <bitfield high="6" low="3" name="COMPRESSION_FORMAT" type="COMPRESSION_FORMAT"/>
+            </reg32>
             <reg32 offset="0x017C0" name="STATUS_BASE" type="VIVM"/>
             <reg32 offset="0x017E0" name="SURFACE_BASE" type="VIVM"/>
             <reg32 offset="0x01A00" name="CLEAR_VALUE"/>
             <reg32 offset="0x01A20" name="CLEAR_VALUE2"/>
-            <reg32 offset="0x01A40" name="UNK01A40"/>
+            <reg32 offset="0x01A40" name="COLOR_AUTO_DISABLE_COUNT" brief="Auto disable color counter" value="0x00000000"/>
         </stripe>
     </stripe>
 
