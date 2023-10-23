@@ -546,7 +546,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x01000" name="END_PC" value="0x00000000"/>
         <reg32 offset="0x01004" name="OUTPUT_REG" value="0x00000000" brief="Register that will contain output color"/>
         <reg32 offset="0x01008" name="INPUT_COUNT" value="0x00000000">
-            <bitfield high="3" low="0" name="COUNT" type="uint" brief="Number of PS inputs"/>
+            <bitfield high="4" low="0" name="COUNT" type="uint" brief="Number of PS inputs"/>
             <bitfield high="12" low="8" name="UNK8" type="uint"/>
             <bitfield pos="16" name="DUAL16" brief="Enable dual-16 mode for PS"/>
         </reg32>
