@@ -283,7 +283,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x00880" name="HALTI5_UNK00880"/> <!-- !HALTI5 && ICACHE "VS/PS Start/End PC register" -->
         <reg32 offset="0x00884" name="HALTI1_UNK00884"/> <!-- HALTI1 -->
         <reg32 offset="0x0088C" name="ICACHE_PREFETCH" brief="Trigger icache prefetch"/>
-        <reg32 offset="0x00890" name="ICACHE_UNK00890"/> <!-- !HALTI5 && ICACHE_PREFETCH -->
+        <reg32 offset="0x00890" name="ICACHE_PREFETCH_INSTRUCTIONS" brief="Number of instructions to prefetch"/> <!-- !HALTI5 && ICACHE_PREFETCH -->
         <reg32 offset="0x00898" name="HALTI5_UNK00898" length="2" stride="4"/> <!-- HALTI5 -->
         <reg32 offset="0x008A0" name="HALTI5_UNK008A0"> <!-- HALTI5 -->
             <!-- Various tweaking parameters regarding VS outputs? -->
@@ -592,7 +592,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x0103C" name="HALTI3_UNK0103C" value="0x76543210"/> <!-- HALTI3 kernel driver puts this under "pixel engine states" -->
         <reg32 offset="0x01040" name="UNK01040" length="2" stride="4"/> <!-- HALTI2 -->
         <reg32 offset="0x01048" name="ICACHE_PREFETCH" brief="Trigger icache prefetch"/>
-        <reg32 offset="0x0104C" name="ICACHE_UNK0104C" type="VIVM"/> <!-- !HALTI5 && ICACHE_PREFETCH -->
+        <reg32 offset="0x0104C" name="ICACHE_PREFETCH_INSTRUCTIONS" brief="Number of instructions to prefetch"/>
         <reg32 offset="0x01054" name="MSAA_CONFIG"> <!-- HALTI4 -->
             <!-- Multisampling related masked state.
                  6fffffff SAMPLE_COVERAGE
