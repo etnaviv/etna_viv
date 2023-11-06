@@ -374,7 +374,11 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x03860" name="BUG_FIXES" value="0x00000006"/> <!-- BUG_FIXES18 -->
         <reg32 offset="0x03868" name="FENCE_OUT_ADDRESS" type="VIVM"/> <!-- HALTI5 -->
         <reg32 offset="0x0386C" name="FENCE_OUT_DATA_LOW"/> <!-- HALTI5 -->
-        <reg32 offset="0x03884" name="HALTI5_UNK03884"/> <!-- HALTI5 -->
+        <reg32 offset="0x03884" name="USC_CONTROL"> <!-- HALTI5 -->
+            <bitfield high="2" low="0" name="L1_CACHE_RATIO"/>
+            <bitfield high="11" low="8" name="ATTRIB_CACHE_RATIO"/>
+            <bitfield high="20" low="16" name="UNK16"/> <!-- Galcore sets to 0x2 -->
+        </reg32>
         <reg32 offset="0x03888" name="HALTI5_SH_SPECIALS"> <!-- HALTI5 -->
             <bitfield high="6" low="0" name="VS_PSIZE_OUT"/> <!-- output slot (after permutation) * 4 -->
             <bitfield high="14" low="8" name="PS_PCOORD_IN"/> <!-- component idx in varyings -->
@@ -394,6 +398,21 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x038C0" name="HALTI5_UNK038C0" length="16" stride="4"/> <!-- feature HALTI5 -->
         <reg32 offset="0x03900" name="SECURITY_UNK3900"/> <!-- SECURITY -->
         <reg32 offset="0x03904" name="SECURITY_UNK3904"/> <!-- SECURITY -->
+        <reg32 offset="0x03930" name="NN_CONFIG">
+            <bitfield high="1" low="0" name="UNK0"/>
+            <bitfield pos="2" name="DISABLE_ZDPN"/>
+            <bitfield pos="3" name="DISABLE_SWTILING"/>
+            <bitfield pos="4" name="SMALL_BATCH"/>
+            <bitfield high="6" low="5" name="DDR_BURST_SIZE"/> <!-- 0x2 for burst size of 256, 0x0 otherwise-->
+            <bitfield pos="7" name="UNK7"/>
+            <bitfield high="11" low="8" name="NN_CORE_COUNT"/>
+            <bitfield pos="12" name="UNK12"/>
+        </reg32>
+        <!-- 0x03934 -->
+        <reg32 offset="0x03938" name="SRAM_REMAP_ADDRESS"/>
+        <reg32 offset="0x0393C" name="OCB_REMAP_START"/>
+        <reg32 offset="0x03940" name="OCB_REMAP_END"/>
+        <reg32 offset="0x0394C" name="TP_CONFIG"/>
         <reg32 offset="0x03A00" name="UNK03A00"/>
         <reg32 offset="0x03A04" name="UNK03A04"/>
         <reg32 offset="0x03A08" name="UNK03A08"/>
