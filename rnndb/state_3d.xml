@@ -173,6 +173,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x00804" name="OUTPUT_COUNT" value="0x00000000">
             <bitfield high="7" low="0" name="COUNT" type="uint" brief="Number of VS outputs"/>
             <bitfield high="15" low="8" name="OUTPUT16_REG" type="uint" brief="temporary register number of VS output 16"/>
+            <bitfield high="23" low="16" name="OUTPUT17_REG" type="uint" brief="temporary register number of VS output 17"/>
         </reg32>
         <reg32 offset="0x00808" name="INPUT_COUNT" value="0x00000000">
             <bitfield high="3" low="0" name="COUNT" type="uint" brief="Number of VS inputs"/>
