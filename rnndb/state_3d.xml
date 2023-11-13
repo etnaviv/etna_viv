@@ -453,7 +453,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         </reg32>
         <reg32 offset="0x00A38" name="WIDE_LINE_WIDTH0" value="0x00000000" type="float" brief="Line width, used when PA.CONFIG.WIDE_LINE set"/>
         <reg32 offset="0x00A3C" name="WIDE_LINE_WIDTH1" value="0x00000000" type="float" brief="Another line width, used when PA.CONFIG.WIDE_LINE set"/>
-        <reg32 offset="0x00A40" name="SHADER_ATTRIBUTES" value="0x00000000" length="10" stride="4"> <!-- !HALTI5 -->
+        <reg32 offset="0x00A40" name="SHADER_ATTRIBUTES" value="0x00000000" length="16" stride="4"> <!-- !HALTI5 -->
             <doc>Flags word per shader attribute. I suspect that these determine the type of interpolation
                 (color, perspective, linear, ...).</doc>
             <bitfield high="0" low="0" name="BYPASS_FLAT" brief="Bypass flat shading for this varying"/>
