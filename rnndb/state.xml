@@ -73,6 +73,22 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <value value="3" name="POINTCOORD_Y" brief="glPointCoord.y"/>
     </enum>
 
+    <enum name="VARYING_INTERPOLATION_MODE">
+        <value value="0" name="SMOOTH"/>
+        <value value="1" name="NONPERSPECTIVE"/>
+        <value value="2" name="FLAT"/>
+        <value value="3" name="UNK"/>
+    </enum>
+
+    <enum name="VARYING_LOCATION">
+        <value value="1" name="CENTROID"/>
+    </enum>
+
+    <bitset name="VARYING_SEMANTIC">
+        <bitfield high="1" low="0" name="MODE" type="VARYING_INTERPOLATION_MODE"/>
+        <bitfield pos="2" name="LOCATION" type="VARYING_LOCATION"/>
+    </bitset>
+
     <bitset name="FE_VERTEX_STREAM_CONTROL">
         <bitfield high="7" low="0" name="VERTEX_STRIDE"/>
         <bitfield high="23" low="16" name="VERTEX_DIVISOR" brief="glVertexAttribDivisor"/>
@@ -397,7 +413,16 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             </doc>
         </reg32>
         <reg32 offset="0x038A0" name="GS_UNK038A0" length="8" stride="4"/> <!-- GEOMETRY_SHADER -->
-        <reg32 offset="0x038C0" name="HALTI5_UNK038C0" length="16" stride="4"/> <!-- feature HALTI5 -->
+        <reg32 offset="0x038C0" name="HALTI5_SHADER_ATTRIBUTES" length="16" stride="4"> <!-- feature HALTI5 -->
+            <bitfield high="2" low="0" name="V0_X" type="VARYING_SEMANTIC"/>
+            <bitfield high="6" low="4" name="V0_Y" type="VARYING_SEMANTIC"/>
+            <bitfield high="10" low="8" name="V0_Z" type="VARYING_SEMANTIC"/>
+            <bitfield high="14" low="12" name="V0_W" type="VARYING_SEMANTIC"/>
+            <bitfield high="18" low="16" name="V1_X" type="VARYING_SEMANTIC"/>
+            <bitfield high="22" low="20" name="V1_Y" type="VARYING_SEMANTIC"/>
+            <bitfield high="26" low="24" name="V1_Z" type="VARYING_SEMANTIC"/>
+            <bitfield high="30" low="28" name="V1_W" type="VARYING_SEMANTIC"/>
+        </reg32>
         <reg32 offset="0x03900" name="SECURITY_UNK3900"/> <!-- SECURITY -->
         <reg32 offset="0x03904" name="SECURITY_UNK3904"/> <!-- SECURITY -->
         <reg32 offset="0x03908" name="MULTI_CLUSTER_UNK3908"> <!-- MULTI_CLUSTER -->
