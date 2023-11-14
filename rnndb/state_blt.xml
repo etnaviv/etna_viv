@@ -267,6 +267,9 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <reg32 offset="0x140C0" name="ADDR" type="VIVM"/>
             <reg32 offset="0x14300" name="STRIDE"/>
         </stripe>
+        <reg32 offset="0x14338" name="MULTI_CLUSTER_UNK14338"> <!-- MULTI_CLUSTER -->
+            <bitfield high="7" low="0" name="SELECTED_CLUSTER"/>
+        </reg32>
         <!-- These two, encountered while tracing SashaWillems "indirectdraw" Vulkan demo,
              immediately follow the MIP state for the 13 mipmaps.
              It appears to delimit the end (inclusive) of a memory range for SRC and DEST.

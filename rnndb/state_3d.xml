@@ -325,6 +325,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         </reg32>
         <!-- same as 0x01094 for PS -->
         <reg32 offset="0x15604" name="ICACHE_COUNT" brief="Number of instructions minus one"/> <!-- HALTI5 && ICACHE_PREFETCH -->
+        <reg32 offset="0x15608" name="MULTI_CLUSTER_UNK15608"/> <!-- MULTI_CLUSTER -->
     </stripe>
 
     <bitset name="CL_GLOBAL_DIM" inline="yes">
@@ -497,6 +498,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
          -->
         <reg32 offset="0x00A90" name="VARYING_NUM_COMPONENTS" type="VARYING_NUM_COMPONENTS" length="4" stride="4"/> <!-- HALTI5 -->
         <reg32 offset="0x00AA8" name="VS_OUTPUT_COUNT" brief="Looks like a duplicate of VS output count"/> <!-- HALTI5 -->
+        <reg32 offset="0x00AAC" name="MULTI_CLUSTER_UNK00AAC"/>  <!-- MULTI_CLUSTER -->
     </stripe>
 
     <stripe name="SE" brief="Setup Engine states">
@@ -616,6 +618,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x01098" name="HALTI5_UNK01098"/> <!-- HALTI5 -->
         <reg32 offset="0x0109C" name="PSCS_THROTTLE"/> <!-- PSCS_THROTTLE -->
         <reg32 offset="0x010A0" name="NN_INST_ADDR" type="VIVM" brief="Memory address of NN kernel instructions, must be aligned to 0x100"/> <!-- ICACHE -->
+        <reg32 offset="0x010A8" name="MULTI_CLUSTER_UNK10A8"/> <!-- MULTI_CLUSTER -->
         <reg32 offset="0x010B8" name="TP_INST_ADDR" type="VIVM" brief="Memory address of TP kernel instructions, must be aligned to 0x100"/> <!-- ICACHE -->
         <reg32 offset="0x06000" name="INST_MEM" value="0x00000000" length="1024" stride="4"> <!-- instructionCount <= 256 -->
             <!-- length="instructionCount * 4" -->
