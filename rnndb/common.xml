@@ -78,6 +78,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <value value="0x0520" name="GC520"/>
         <value value="0x0530" name="GC530"/>
         <value value="0x0600" name="GC600"/>
+        <value value="0x0620" name="GC620"/> <!-- 2D graphics -->
         <value value="0x0700" name="GC700"/>
         <value value="0x0800" name="GC800"/> <!-- 3D graphics, 1 core -->
         <value value="0x0860" name="GC860"/>
