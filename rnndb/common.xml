@@ -623,6 +623,9 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <bitfield pos="4" name="TP_REORDER" />
         <bitfield pos="5" name="PE_DEPTH_ONLY_OQFIX" />
     </bitset>
+    <bitset name="chipMinorFeatures12"> <!-- ETNA_GPU_FEATURES_13 -->
+        <bitfield pos="5" name="G2D_DEC400EX" />
+    </bitset>
 
 <domain name="VIVM" brief="GPU memory domain">
 </domain>
