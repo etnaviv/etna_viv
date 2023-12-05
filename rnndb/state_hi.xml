@@ -530,6 +530,23 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x00570" name="MC_AXI_TOTAL_LATENCY"/> <!-- hasNewCounters -->
         <reg32 offset="0x00574" name="MC_AXI_SAMPLE_COUNT"/> <!-- hasNewCounters -->
     </stripe>
+    <stripe name="DEC400EX" brief="External DEC400 control?">
+        <!-- related to G2D_DEC400EX, galcore comment says "AHBDEC400",
+             the register values specified here are needed to make the MMU work properly -->
+	<reg32 offset="0x00800" name="UNK00800">
+            <doc>
+                Downstream kernel driver writes 0x2010188 in the initialization sequence when
+                DEC400EX feature bit is set. In addition, a quirk for GC620 rev 0x5552 will
+		write 0x10 to this register before soft resetting the GPU, otherwise the MMU
+		won't be properly resetted.
+	    </doc>
+	</reg32>
+	<reg32 offset="0x00808" name="UNK00808">
+	    <doc>
+                Downstream kernel driver writes 0x3fc104 in the initialization sequence.
+	    </doc>
+	</reg32>
+    </stripe>
 </domain>
 
 </database>
