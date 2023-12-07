@@ -333,7 +333,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield high="31" low="27" name="OP">
                 <value value="16" name="DRAW_INDIRECT"/>
             </bitfield>
-            <bitfield pos="8" name="UNK8"/>
+            <bitfield pos="8" name="INDEXED"/>
             <bitfield high="3" low="0" name="TYPE" type="PRIMITIVE_TYPE"/>
         </reg32>
         <reg32 offset="0x00004" name="ADDRESS" type="VIVM"/>
