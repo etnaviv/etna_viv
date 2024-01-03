@@ -636,6 +636,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x01098" name="HALTI5_UNK01098"/> <!-- HALTI5 -->
         <reg32 offset="0x0109C" name="PSCS_THROTTLE"/> <!-- PSCS_THROTTLE -->
         <reg32 offset="0x010A0" name="NN_INST_ADDR" type="VIVM" brief="Memory address of NN kernel instructions, must be aligned to 0x100"/> <!-- ICACHE -->
+        <reg32 offset="0x010A4" name="UNK10A4"/> <!-- This is set right after NN_INST_ADDR or TP_INST_ADDR. -->
         <reg32 offset="0x010A8" name="MULTI_CLUSTER_UNK10A8"/> <!-- MULTI_CLUSTER -->
         <reg32 offset="0x010B8" name="TP_INST_ADDR" type="VIVM" brief="Memory address of TP kernel instructions, must be aligned to 0x100"/> <!-- ICACHE -->
         <reg32 offset="0x06000" name="INST_MEM" value="0x00000000" length="1024" stride="4"> <!-- instructionCount <= 256 -->
