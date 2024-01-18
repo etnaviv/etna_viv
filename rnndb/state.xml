@@ -423,6 +423,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x0393C" name="OCB_REMAP_START"/>
         <reg32 offset="0x03940" name="OCB_REMAP_END"/>
         <reg32 offset="0x0394C" name="TP_CONFIG"/>
+        <reg32 offset="0x03950" name="UNK03950"/> <!--  This is set to 0x0 or 0x8 right after NN_CONFIG or TP_CONFIG. -->
         <reg32 offset="0x03A00" name="UNK03A00">
             <bitfield high="2" low="0" name="UNK0">
                 <doc>Kernel driver writes 0x7 when MULTI_CLUSTER</doc>
