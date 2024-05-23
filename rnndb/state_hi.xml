@@ -324,6 +324,9 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield pos="0" name="RESET"/> <!-- Self-clearing GPU reset -->
             <bitfield pos="1" name="NONSEC_ACCESS"/>
         </reg32>
+        <reg32 offset="0x10061" name="FLUSH" value="0XFFFFFF7F">
+            <!-- Value is 0xffffff7f in MMU flush function-->
+        </reg32>
     </stripe>
 
     <stripe name="MC" brief="Memory Controller">
