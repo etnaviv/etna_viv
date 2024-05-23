@@ -276,6 +276,14 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
           -->
         <reg32 offset="0x140F4" name="SRC_END" type="VIVM"/>
         <reg32 offset="0x14334" name="DEST_END" type="VIVM"/>
+        <reg32 offset="0x1502E" name="LOCK">
+            <bitfield pos="0" name="ENABLE" brief="Lock BLT engine">
+                <doc>
+                    The BLT engine is need to be locked when flushing the
+                    MMU.
+                </doc>
+            </bitfield>
+        </reg32>
     </stripe>
 
 </domain>
