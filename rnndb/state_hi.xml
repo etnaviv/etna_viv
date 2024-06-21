@@ -365,6 +365,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
                 all the counters of that unit.
             </doc>
             <bitfield high="7" low="0" name="FE">
+                <value value="9" name="CURRENT_PRIM"/>
                 <value value="10" name="DRAW_COUNT"/>
                 <value value="11" name="OUT_VERTEX_COUNT"/>
                 <value value="12" name="CACHE_MISS_COUNT"/>
