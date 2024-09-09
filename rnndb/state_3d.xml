@@ -403,9 +403,9 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <doc>Set to workgroup size z - 1</doc>
         </reg32>
 
-        <reg32 offset="0x00958" name="HALTI5_UNK00958"/> <!-- HALTI5 -->
-        <reg32 offset="0x0095C" name="HALTI5_UNK0095C"/> <!-- HALTI5 -->
-        <reg32 offset="0x00960" name="HALTI5_UNK00960"/> <!-- HALTI5 -->
+        <reg32 offset="0x00958" name="GLOBAL_SCALE_X"/> <!-- HALTI5 -->
+        <reg32 offset="0x0095C" name="GLOBAL_SCALE_Y"/> <!-- HALTI5 -->
+        <reg32 offset="0x00960" name="GLOBAL_SCALE_Z"/> <!-- HALTI5 -->
     </stripe>
 
     <stripe name="PA" brief="Primitive assembly states">
