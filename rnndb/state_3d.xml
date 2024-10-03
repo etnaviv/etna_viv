@@ -157,7 +157,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
     <bitset name="RT_CONFIG">
         <bitfield high="15" low="0" name="STRIDE"/>
         <bitfield high="25" low="20" name="FORMAT" type="PE_FORMAT"/>
-        <bitfield pos="26" name="TS_MODE" type="TS_MODE"/>
+        <bitfield pos="26" name="SUPER_TILED_NEW"/> <!-- CACHE128B256BPERLINE -->
         <bitfield pos="27" name="UNK27"/>
         <bitfield pos="28" name="SUPER_TILED"/>
         <bitfield pos="29" name="UNK29"/>
