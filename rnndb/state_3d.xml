@@ -185,7 +185,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield high="23" low="16" name="OUTPUT17_REG" type="uint" brief="temporary register number of VS output 17"/>
         </reg32>
         <reg32 offset="0x00808" name="INPUT_COUNT" value="0x00000000">
-            <bitfield high="3" low="0" name="COUNT" type="uint" brief="Number of VS inputs"/>
+            <bitfield high="4" low="0" name="COUNT" type="uint" brief="Number of VS inputs"/>
             <bitfield high="12" low="8" name="UNK8" type="uint"/>
             <bitfield pos="31" name="ID_ENABLE"/> <!-- last input contains vertex/instance ids -->
         </reg32>
