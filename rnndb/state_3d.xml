@@ -1313,8 +1313,8 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x12400" name="UNK12400" value="0x00000000" length="256" stride="4"/> <!-- TX_FILTER -->
 
         <reg32 offset="0x14C00" name="HALTI3_UNK14C00" length="16" stride="4"/> <!-- HALTI3 -->
-        <reg32 offset="0x14C40" name="DESCRIPTOR_UNK14C40"> <!-- TX_DESCRIPTOR -->
-            <bitfield pos="0" name="UNK0"/> <!-- Always enabled by gc7000 blob -->
+        <reg32 offset="0x14C40" name="DESCRIPTOR_CONTROL"> <!-- TX_DESCRIPTOR -->
+            <bitfield pos="0" name="ENABLE"/>
         </reg32>
         <reg32 offset="0x14C44" name="DESCRIPTOR_FLUSH">
             <doc>Kernel driver writes here to flush the TX descriptor cache</doc>
