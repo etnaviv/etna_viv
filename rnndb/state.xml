@@ -67,8 +67,8 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
 
     <!-- Other generic enums -->
     <enum name="VARYING_COMPONENT_USE">
-        <value value="0" name="UNUSED" brief="Component is not used"/>
-        <value value="1" name="USED" brief="Component is used"/>
+        <value value="0" name="GENERIC" brief="Generic component unaffected by rasterizer flatshade"/>
+        <value value="1" name="COLOR" brief="Color component affected by rasterizer flatshade"/>
         <value value="2" name="POINTCOORD_X" brief="glPointCoord.x"/>
         <value value="3" name="POINTCOORD_Y" brief="glPointCoord.y"/>
     </enum>
