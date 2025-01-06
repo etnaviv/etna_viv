@@ -350,7 +350,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x03824" name="OCCLUSION_QUERY_ADDR" value="0x00000000" type="VIVM">
             <doc>Writing the address where to store the result will enable occlusion query.</doc>
         </reg32>
-        <reg32 offset="0x03828" name="VARYING_COMPONENT_USE" brief="Varying component usage" value="0x00000000" length="2" stride="4"> <!-- !HALTI5 -->
+        <reg32 offset="0x03828" name="VARYING_COMPONENT_USE" brief="Varying component usage (comp 0-31)" value="0x00000000" length="2" stride="4"> <!-- !HALTI5 -->
             <doc>2 bits per varying component, 16 components per 32-bit word.</doc>
             <bitfield high="1" low="0" name="COMP0" type="VARYING_COMPONENT_USE"/>
             <bitfield high="3" low="2" name="COMP1" type="VARYING_COMPONENT_USE"/>
@@ -369,14 +369,13 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield high="29" low="28" name="COMP14" type="VARYING_COMPONENT_USE"/>
             <bitfield high="31" low="30" name="COMP15" type="VARYING_COMPONENT_USE"/>
         </reg32>
-        <reg32 offset="0x0382C" name="UNK0382C"/> <!-- !HALTI5 -->
         <reg32 offset="0x03830" name="OCCLUSION_QUERY_CONTROL">
             <doc>Write some value to this register to disable occlusion query.</doc>
         </reg32>
         <reg32 offset="0x03834" name="VARYING_NUM_COMPONENTS2" type="VARYING_NUM_COMPONENTS" brief="Number of components in varyings" value="0x00000000"> <!-- !HALTI5 -->
             <doc>Number of components per varying (PS) for the last 8 varyings</doc>
         </reg32>
-        <reg32 offset="0x03838" name="UNK03838" value="0x00000000"/> <!-- !HALTI5 -->
+        <reg32 offset="0x03838" name="VARYING_COMPONENT_USE2" brief="Varying component usage (comp 32-47)" value="0x00000000"/> <!-- !HALTI5 -->
         <reg32 offset="0x0384C" name="API_MODE" brief="API mode" value="0x00000000">
             <value value="0" name="OPENGL"/>
             <value value="1" name="OPENVG"/>
@@ -388,7 +387,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             Likely this register is not used by the hardware, but only by debugging software.
             </doc>
         </reg32>
-        <reg32 offset="0x03854" name="UNK03854"/> <!-- !HALTI5 -->
+        <reg32 offset="0x03854" name="VARYING_COMPONENT_USE3" brief="Varying component usage (comp 48-63)" value="0x00000000"/> <!-- !HALTI5 -->
         <reg32 offset="0x03860" name="BUG_FIXES" value="0x00000006"/> <!-- BUG_FIXES18 -->
         <reg32 offset="0x03868" name="FENCE_OUT_ADDRESS" type="VIVM"/> <!-- HALTI5 -->
         <reg32 offset="0x0386C" name="FENCE_OUT_DATA_LOW"/> <!-- HALTI5 -->
