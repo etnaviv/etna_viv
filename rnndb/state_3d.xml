@@ -539,6 +539,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield pos="0" name="TEST_ENABLE"/>
             <bitfield pos="24" name="FORWARD_Z"/>
             <bitfield pos="25" name="LATE_DEPTH_MSAA"/>
+            <bitfield pos="26" name="FORWARD_W"/>
             <bitfield pos="28" name="WRITE_DISABLE"/>
         </reg32>
         <reg32 offset="0x00E0C" name="UNK00E0C" value="0x00000000"/> <!-- HALTI2 -->
