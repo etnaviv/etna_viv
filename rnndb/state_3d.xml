@@ -537,8 +537,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x00E04" name="MULTISAMPLE_UNK00E04" value="0x00000000"/>
         <reg32 offset="0x00E08" name="EARLY_DEPTH" value="0x17000031" brief="Early depth control">
             <bitfield pos="0" name="TEST_ENABLE"/>
-            <bitfield pos="24" name="HDEPTH_DISABLE"/>
-                <doc>HDEPTH can only be used when early testing is enabled and depth is written from the RA stage.</doc>
+            <bitfield pos="24" name="FORWARD_Z"/>
             <bitfield pos="25" name="LATE_DEPTH_MSAA"/>
             <bitfield pos="28" name="WRITE_DISABLE"/>
         </reg32>
