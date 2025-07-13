@@ -223,7 +223,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x00850" name="UNK00850" value="0x000003e8"/>
         <reg32 offset="0x00854" name="UNK00854" value="0x00000100"/>
         <reg32 offset="0x00858" name="UNK00858" value="0x00001005"/>
-        <reg32 offset="0x0085C" name="RANGE" value="0x00000000" brief="Defines the range within which VS instructions are executed, relative to start of the state area"> <!-- instructionCount > 1024 -->
+        <reg32 offset="0x0085C" name="RANGE" value="0x00000000" brief="Defines the range within which VS instructions are executed, relative to start of the state area"> <!-- instructionCount > 256 -->
             <bitfield high="15" low="0" name="LOW" brief="Index of first VS instruction"/>
             <bitfield high="31" low="16" name="HIGH" brief="Index of last VS instruction"/>
         </reg32>
@@ -288,9 +288,8 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
 	    <bitfield high="18" low="8" name="B"/> <!-- = COUNT*0x10 -->
 	</reg32>
         <!-- "new shader instruction PC registers (20 bit)" -->
-        <reg32 offset="0x00874" name="NEWRANGE_LOW"/> <!-- HALTI5 || ICACHE -->
-        <reg32 offset="0x00878" name="HALTI5_UNK00878"/> <!-- !HALTI5 && ICACHE "VS/PS Start/End PC register" -->
-        <reg32 offset="0x00880" name="HALTI5_UNK00880"/> <!-- !HALTI5 && ICACHE "VS/PS Start/End PC register" -->
+        <reg32 offset="0x00874" name="NEWRANGE_LOW"/> <!-- HALTI5 || ICACHE "VS Start PC register" -->
+        <reg32 offset="0x00878" name="NEWRANGE_HIGH"/> <!-- !HALTI5 && ICACHE "VS End PC register" -->
         <reg32 offset="0x00884" name="HALTI1_UNK00884"/> <!-- HALTI1 -->
         <reg32 offset="0x0088C" name="ICACHE_PREFETCH" brief="Trigger icache prefetch"/>
         <reg32 offset="0x00890" name="ICACHE_PREFETCH_INSTRUCTIONS" brief="Number of instructions to prefetch"/> <!-- !HALTI5 && ICACHE_PREFETCH -->
@@ -311,7 +310,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield pos="4" name="UNK4"/>
         </reg32>
         <reg32 offset="0x008B8" name="HALTI5_UNK008B8"/> <!-- HALTI5 -->
-        <reg32 offset="0x008BC" name="NEWRANGE_HIGH"/> <!-- HALTI5 -->
+        <reg32 offset="0x008BC" name="HALTI5_RANGE_HIGH"/> <!-- HALTI5 "VS End PC register" -->
         <reg32 offset="0x008C0" name="HALTI5_INPUT" length="8" stride="4"> <!-- HALTI5 -->
             <!-- See VS.INPUT for description of fields -->
             <bitfield high="7" low="0" name="I0" type="uint"/>
@@ -580,7 +579,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         </reg32>
         <reg32 offset="0x01014" name="PERF_COUNTER" brief="Performance counter control"/>
         <reg32 offset="0x01018" name="START_PC" value="0x01000000"/>
-        <reg32 offset="0x0101C" name="RANGE" value="0x00000100" brief="Defines the range within which PS instructions are executed, relative to start of the state area"> <!-- instructionCount > 1024 -->
+        <reg32 offset="0x0101C" name="RANGE" value="0x00000100" brief="Defines the range within which PS instructions are executed, relative to start of the state area"> <!-- instructionCount > 256 -->
             <bitfield high="15" low="0" name="LOW" brief="Index of first PS instruction"/>
             <bitfield high="31" low="16" name="HIGH" brief="Index of last PS instruction"/>
         </reg32>
@@ -630,8 +629,9 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
              many cases. Might be varying num components (which used to be in GL).
          -->
         <reg32 offset="0x01080" name="VARYING_NUM_COMPONENTS" type="VARYING_NUM_COMPONENTS" length="4" stride="4"/> <!-- HALTI5 -->
-        <reg32 offset="0x0087C" name="NEWRANGE_LOW"/> <!-- HALTI5 || ICACHE -->
-        <reg32 offset="0x01090" name="NEWRANGE_HIGH"/> <!-- HALTI5 -->
+        <reg32 offset="0x0087C" name="NEWRANGE_LOW"/> <!-- HALTI5 || ICACHE "PS Start PC register" -->
+        <reg32 offset="0x00880" name="NEWRANGE_HIGH"/> <!-- !HALTI5 && ICACHE "PS End PC register" -->
+        <reg32 offset="0x01090" name="HALTI5_RANGE_HIGH"/> <!-- HALTI5 "PS End PC register" -->
         <reg32 offset="0x01094" name="ICACHE_COUNT" brief="Number of instructions minus one"/> <!-- HALTI5 && ICACHE_PREFETCH -->
         <reg32 offset="0x01098" name="HALTI5_UNK01098"/> <!-- HALTI5 -->
         <reg32 offset="0x0109C" name="PSCS_THROTTLE"/> <!-- PSCS_THROTTLE -->
