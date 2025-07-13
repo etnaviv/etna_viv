@@ -227,61 +227,8 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield high="15" low="0" name="LOW" brief="Index of first VS instruction"/>
             <bitfield high="31" low="16" name="HIGH" brief="Index of last VS instruction"/>
         </reg32>
-        <!-- The following register is set to the Vivante driver to:
-             - Rendering on GC2000:
-               - 0x00000000  Before loading VS uniform / code
-               - 0x00000011  Before loading PS uniform / code
-             - Rendering on GC3000:
-               - 0x00000001  Before loading VS uniform
-               - 0x00000000  Before loading VS code
-               - 0x00000011  Before loading PS uniform / code
-             - OpenCL on GC2000: always 0x0
-             - OpenCL on GC3000: always 0x1011
-
-             It controls flushing cached uniforms, in combination with unified SH_UNIFORMS.
-
-             Vivante kernel driver calls this "DECODE_SELECT", and selects the destination for unified uniform and
-             shader code loads.
-         -->
-        <reg32 offset="0x00860" name="UNIFORM_CACHE" value="0x00000000"> <!-- instructionCount > 1024, !HALTI5 -->
-            <bitfield pos="0" name="FLUSH"/>
-            <bitfield pos="4" name="PS" brief="0 for VS, 1 for PS"/>
-            <bitfield pos="12" name="RTNE_ROUNDING"/> <!-- HALTI5 has this bit in state 0x15600 -->
-        </reg32>
         <!-- The following is used with unified uniforms (SH_UNIFORM_*) -->
         <reg32 offset="0x00864" name="UNIFORM_BASE" brief="Offset applied to VS uniform loads (granularity is 4-vectors)"/>
-        <!-- ICACHE is a new feature in GC3000 on i.MX6qp where the shader code
-             is stored in memory instead
-             of having to be loaded into a range of states.
-             The Vivante driver (as of 5.0.11.p8.4) only uses this for:
-
-             - OpenCL compute - always
-             - When a shader is too large to fit into the assigned state area
-
-             It is unclear what the rationale is to not always use it: either stability
-             or performance.
-
-             Setting it up:
-               - ICACHE_CONTROL := ENABLE | FLUSH_VS
-               - VS.INST_ADDR := <GPU address>
-               - ICACHE_CONTROL := ENABLE | FLUSH_PS
-               - PS.INST_ADDR := <GPU address>
-
-             ICACHE invalidate (from kernel driver):
-
-               [0x860]=0
-               [0x868]=0x11
-               [0x860]=1
-               [0x868]=0x21
-          -->
-        <reg32 offset="0x00868" name="ICACHE_CONTROL"> <!-- ICACHE -->
-            <bitfield pos="0" name="ENABLE" brief="Enables loading of shader instructions from memory"/>
-            <!-- "flush" guess is based on the Vivante driver behavior where
-                 these bits are only being set before setting instruction address
-             -->
-            <bitfield pos="4" name="FLUSH_VS"/>
-            <bitfield pos="5" name="FLUSH_PS"/>
-        </reg32>
         <reg32 offset="0x0086C" name="INST_ADDR" type="VIVM" brief="Memory address of shader instructions, must be aligned to 0x100"/> <!-- ICACHE -->
         <reg32 offset="0x00870" name="HALTI5_OUTPUT_COUNT"> <!-- HALTI5 -->
             <bitfield high="9" low="0" name="COUNT"/> <!-- Same as VS.OUTPUT_COUNT -->
@@ -1389,6 +1336,59 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
     <stripe name="SH" brief="General shader unit state">
         <doc>Shader instruction memory on new hardware that supports more than 256, or more than
             1024 shader instructions (different areas are used based on these cases).</doc>
+        <!-- The following register is set to the Vivante driver to:
+             - Rendering on GC2000:
+               - 0x00000000  Before loading VS uniform / code
+               - 0x00000011  Before loading PS uniform / code
+             - Rendering on GC3000:
+               - 0x00000001  Before loading VS uniform
+               - 0x00000000  Before loading VS code
+               - 0x00000011  Before loading PS uniform / code
+             - OpenCL on GC2000: always 0x0
+             - OpenCL on GC3000: always 0x1011
+
+             It controls flushing cached uniforms, in combination with unified SH_UNIFORMS.
+
+             Vivante kernel driver calls this "DECODE_SELECT", and selects the destination for unified uniform and
+             shader code loads.
+         -->
+	<reg32 offset="0x00860" name="UNIFORM_CACHE" value="0x00000000"> <!-- instructionCount > 1024, !HALTI5 -->
+            <bitfield pos="0" name="FLUSH"/>
+            <bitfield pos="4" name="PS" brief="0 for VS, 1 for PS"/>
+            <bitfield pos="12" name="RTNE_ROUNDING"/> <!-- HALTI5 has this bit in state 0x15600 -->
+        </reg32>
+        <!-- ICACHE is a new feature in GC3000 on i.MX6qp where the shader code
+             is stored in memory instead
+             of having to be loaded into a range of states.
+             The Vivante driver (as of 5.0.11.p8.4) only uses this for:
+
+             - OpenCL compute - always
+             - When a shader is too large to fit into the assigned state area
+
+             It is unclear what the rationale is to not always use it: either stability
+             or performance.
+
+             Setting it up:
+               - ICACHE_CONTROL := ENABLE | FLUSH_VS
+               - VS.INST_ADDR := <GPU address>
+               - ICACHE_CONTROL := ENABLE | FLUSH_PS
+               - PS.INST_ADDR := <GPU address>
+
+             ICACHE invalidate (from kernel driver):
+
+               [0x860]=0
+               [0x868]=0x11
+               [0x860]=1
+               [0x868]=0x21
+          -->
+        <reg32 offset="0x00868" name="ICACHE_CONTROL"> <!-- ICACHE -->
+            <bitfield pos="0" name="ENABLE" brief="Enables loading of shader instructions from memory"/>
+            <!-- "flush" guess is based on the Vivante driver behavior where
+                 these bits are only being set before setting instruction address
+             -->
+            <bitfield pos="4" name="FLUSH_VS"/>
+            <bitfield pos="5" name="FLUSH_PS"/>
+        </reg32>
         <reg32 offset="0x15600" name="CONFIG"> <!-- HALTI5 -->
             <!-- This state replaces state 00860 on HALTI5, although it loses
                  the various flushing bits, and it's different enough to have its own bit
