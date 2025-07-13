@@ -1347,14 +1347,15 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
              - OpenCL on GC2000: always 0x0
              - OpenCL on GC3000: always 0x1011
 
-             It controls flushing cached uniforms, in combination with unified SH_UNIFORMS.
+             It controls flushing cached uniforms, in combination with unified SH_UNIFORMS
+             and flushing cached code in combination with unified instruction states.
 
-             Vivante kernel driver calls this "DECODE_SELECT", and selects the destination for unified uniform and
-             shader code loads.
+             Vivante kernel driver calls this "DECODE_SELECT", and selects the destination
+             for unified uniform and shader code loads.
          -->
-	<reg32 offset="0x00860" name="UNIFORM_CACHE" value="0x00000000"> <!-- instructionCount > 1024, !HALTI5 -->
-            <bitfield pos="0" name="FLUSH"/>
-            <bitfield pos="4" name="PS" brief="0 for VS, 1 for PS"/>
+	<reg32 offset="0x00860" name="CONTROL" value="0x00000000"> <!-- instructionCount > 1024, !HALTI5 -->
+            <bitfield pos="0" name="PS_CODE" brief="0 for VS, 1 for PS"/>
+            <bitfield pos="4" name="PS_UNIFORM" brief="0 for VS, 1 for PS"/>
             <bitfield pos="12" name="RTNE_ROUNDING"/> <!-- HALTI5 has this bit in state 0x15600 -->
         </reg32>
         <!-- ICACHE is a new feature in GC3000 on i.MX6qp where the shader code
