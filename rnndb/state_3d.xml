@@ -1152,6 +1152,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
                 <bitfield pos="0" name="ENABLE"/>
                 <bitfield pos="1" name="COMPRESSION"/>
                 <bitfield high="7" low="4" name="COMPRESSION_FORMAT" type="COMPRESSION_FORMAT"/>
+                <bitfield pos="9" name="64BPP_FORMAT"/>
                 <bitfield high="13" low="11" name="UNK11"/>
             </reg32>
             <reg32 offset="0x01740" name="STATUS_BASE" value="0x00000000" type="VIVM"/>
