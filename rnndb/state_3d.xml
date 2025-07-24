@@ -572,6 +572,19 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
              -->
         </reg32>
         <reg32 offset="0x01058" name="SAMPLER_BASE" brief="Offset value applied to sampler index from PS"/> <!-- HALTI5 -->
+        <reg32 offset="0x01060" name="ALPHA_TO_COVERAGE_DITHER" length="8" stride="4"> <!-- MSAA_FRAGMENT_OPERATION -->
+            <doc>
+                Values used by proprietary driver:
+                [0] = 0x6e80e680
+                [1] = 0x2ac42a4c
+                [2] = 0x15fb5d3b
+                [3] = 0x9d7391f7
+                [4] = 0x08e691f7
+                [5] = 0x4ca25d3b
+                [6] = 0xbf512a4c
+                [7] = 0x37d9e680
+            </doc>
+        </reg32>
         <!-- Looks like the blob writes the same values here as to 00A90+x, at least in
              many cases. Might be varying num components (which used to be in GL).
          -->
