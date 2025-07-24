@@ -561,7 +561,10 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x01040" name="UNK01040" length="2" stride="4"/> <!-- HALTI2 -->
         <reg32 offset="0x01048" name="ICACHE_PREFETCH" brief="Trigger icache prefetch"/>
         <reg32 offset="0x0104C" name="ICACHE_PREFETCH_INSTRUCTIONS" brief="Number of instructions to prefetch"/>
-        <reg32 offset="0x01054" name="MSAA_CONFIG"> <!-- HALTI4 -->
+        <reg32 offset="0x01054" name="MSAA_CONFIG"> <!-- MSAA_FRAGMENT_OPERATION -->
+            <bitfield pos="12" name="ALPHA_TO_COVERAGE"/>
+            <bitfield pos="15" name="ALPHA_TO_COVERAGE_MASK"/>
+
             <!-- Multisampling related masked state.
                  6fffffff SAMPLE_COVERAGE
                  f70fffff SAMPLE_COVERAGE_VALUE
