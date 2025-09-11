@@ -156,6 +156,15 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <value value="5" name="I8"/>
         <value value="6" name="I16"/>
     </enum>
+    <enum name="TFB_COMMAND">
+        <value value="1" name="ENABLE"/>
+        <value value="2" name="DISABLE"/>
+        <value value="4" name="RESUME"/>
+    </enum>
+    <enum name="TFB_QUERY_COMMAND">
+        <value value="1" name="ENABLE"/>
+        <value value="2" name="DISABLE"/>
+    </enum>
 
     <bitset name="RT_CONFIG">
         <bitfield high="15" low="0" name="STRIDE"/>
@@ -667,16 +676,25 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
     </stripe>
 
     <stripe name="TFB" brief="HW TFB states"> <!-- HW_TFB -->
-        <doc>TFB = transform feedback?</doc>
-        <reg32 offset="0x1C000" name="UNK1C000"/>
-        <reg32 offset="0x1C008" name="UNK1C008" type="VIVM"/>
+        <doc>TFB = transform feedback</doc>
+        <reg32 offset="0x1C000" name="CONFIG">
+            <bitfield pos="0" name="RASTERIZER_DISCARD"/>
+        </reg32>
+        <reg32 offset="0x1C004" name="COMMAND" type="TFB_COMMAND"/>
+        <reg32 offset="0x1C008" name="CONTEXT_BUFFER" type="VIVM"/>
         <reg32 offset="0x1C00C" name="FLUSH"/> <!-- Flush writes 0x12345678 here in kernel driver -->
-        <reg32 offset="0x1C014" name="UNK1C014" type="VIVM"/>
-        <reg32 offset="0x1C040" name="UNK1C040" type="VIVM" length="4" stride="4"/>
-        <reg32 offset="0x1C080" name="UNK1C080" length="4" stride="4"/>
-        <reg32 offset="0x1C0C0" name="UNK1C0C0" length="4" stride="4"/>
-        <reg32 offset="0x1C100" name="UNK1C100" length="4" stride="4"/>
-        <reg32 offset="0x1C800" name="UNK1C800" length="512" stride="4"/> <!-- 128*4 -->
+        <reg32 offset="0x1C010" name="QUERY_COMMAND" type="TFB_QUERY_COMMAND"/>
+        <reg32 offset="0x1C014" name="QUERY_BUFFER" type="VIVM"/>
+        <reg32 offset="0x1C040" name="BUFFER_ADDR" type="VIVM" length="4" stride="4"/>
+        <reg32 offset="0x1C080" name="BUFFER_SIZE" length="4" stride="4"/>
+        <reg32 offset="0x1C0C0" name="BUFFER_STRIDE" length="4" stride="4"/>
+        <reg32 offset="0x1C100" name="DESCRIPTOR_COUNT" length="4" stride="4"/>
+        <reg32 offset="0x1C800" name="DESCRIPTOR" length="512" stride="4"> <!-- 128*4 -->
+            <bitfield high="1" low="0" name="OUTPUT_BUFFER" type="uint"/>
+            <bitfield high="15" low="8" name="INPUT_REGISTER" type="uint"/>
+            <bitfield high="17" low="16" name="COMPONENT_OFFSET" type="uint"/>
+            <bitfield high="21" low="20" name="COMPONENT_MASK" type="uint"/>
+        </reg32>
     </stripe>
 
     <stripe name="PE" brief="Pixel Engine states">
