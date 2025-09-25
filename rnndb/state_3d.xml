@@ -1344,6 +1344,17 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
                     <doc>To disable mipmapping, set this to NONE as well as set the minimum and maximum LOD level to 0..0.</doc>
                 </bitfield>
                 <bitfield high="14" low="13" name="MAG" type="TEXTURE_FILTER" brief="Filter for magnification"/>
+                <bitfield pos="16" name="DEPTH_STENCIL_MODE" brief="Mode used to read from depth-stencil format textures"> <!-- HALTI5 -->
+                    <doc>
+                        Matches GL_DEPTH_STENCIL_TEXTURE_MODE:
+                        - If the depth stencil mode is DEPTH, then reads from depth-stencil format textures will return the depth
+                          component of the texel and the stencil component will be discarded.
+                        - If the depth stencil mode is STENCIL then the stencil component is returned and the
+                          depth component is discarded.
+                    </doc>
+                    <value value="0" name="DEPTH"/>
+                    <value value="1" name="STENCIL"/>
+                </bitfield>
                 <bitfield pos="17" name="COMPARE_ENABLE"/>
                 <bitfield high="20" low="18" name="COMPARE_FUNC" type="TEXTURE_COMPARE_FUNC"/>
                 <bitfield pos="21" name="UNK21"/> <!-- always set? not setting this causes MMU errors -->
