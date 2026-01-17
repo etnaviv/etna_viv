@@ -1,5 +1,5 @@
+cmake_minimum_required(VERSION 3.18)
 project(ENVYTOOLS C)
-cmake_minimum_required(VERSION 2.6)
 
 add_library(envyutil
 	path.c mask.c hash.c symtab.c colors.c yy.c astr.c aprintf.c
