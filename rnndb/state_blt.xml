@@ -64,7 +64,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <value value="0x24" name="R8G8"/>
     </enum>
 
-    <bitset name="BLT_IMAGE_CONFIG">
+    <bitset name="BLT_SRC_IMAGE_CONFIG">
         <bitfield pos="0" name="TS"/> <!-- enable tile status -->
         <bitfield pos="1" name="COMPRESSION"/> <!-- off when VIV_DISABLE_DEC400 -->
         <bitfield high="7" low="4" name="COMPRESSION_FORMAT" type="COMPRESSION_FORMAT"/>
@@ -77,7 +77,27 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <bitfield high="14" low="13" name="SWIZ_B" type="TEXTURE_SWIZZLE"/>
         <bitfield high="16" low="15" name="SWIZ_A" type="TEXTURE_SWIZZLE"/>
         <bitfield pos="17" name="TS_MODE" type="TS_MODE"/>
-        <bitfield pos="19" name="FLIP_Y"/> <!-- only works on DEST -->
+        <bitfield pos="19" name="64BPP_FORMAT" />
+        <bitfield pos="21" name="FROM_SUPER_TILED"/>
+        <bitfield pos="22" name="UNK22"/> <!-- also affects tiling - set on IMAGE_COPY on DEST -->
+        <bitfield pos="26" name="TO_SUPER_TILED"/>
+    </bitset>
+
+    <bitset name="BLT_DEST_IMAGE_CONFIG">
+        <bitfield pos="0" name="TS"/> <!-- enable tile status -->
+        <bitfield pos="1" name="COMPRESSION"/> <!-- off when VIV_DISABLE_DEC400 -->
+        <bitfield high="7" low="4" name="COMPRESSION_FORMAT" type="COMPRESSION_FORMAT"/>
+        <bitfield pos="8" name="SRGB"/>
+        <!-- Not sure why there's another set of what looks like swizzles here.
+             Setting them doesn't seem to have any effect on at least COPY_IMAGE.
+         -->
+        <bitfield high="10" low="9" name="SWIZ_R" type="TEXTURE_SWIZZLE"/>
+        <bitfield high="12" low="11" name="SWIZ_G" type="TEXTURE_SWIZZLE"/>
+        <bitfield high="14" low="13" name="SWIZ_B" type="TEXTURE_SWIZZLE"/>
+        <bitfield high="16" low="15" name="SWIZ_A" type="TEXTURE_SWIZZLE"/>
+        <bitfield pos="17" name="TS_MODE" type="TS_MODE"/>
+        <bitfield pos="19" name="FLIP_Y" />
+        <bitfield pos="20" name="64BPP_FORMAT" />
         <bitfield pos="21" name="FROM_SUPER_TILED"/>
         <bitfield pos="22" name="UNK22"/> <!-- also affects tiling - set on IMAGE_COPY on DEST -->
         <bitfield pos="26" name="TO_SUPER_TILED"/>
@@ -115,7 +135,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield pos="28" name="DOWNSAMPLE_Y" brief="Downsampling vertically"/>
             <bitfield high="30" low="29" name="TILING" type="BLT_TILING"/>
         </reg32>
-        <reg32 offset="0x1400C" name="SRC_CONFIG" type="BLT_IMAGE_CONFIG"/>
+        <reg32 offset="0x1400C" name="SRC_CONFIG" type="BLT_SRC_IMAGE_CONFIG"/>
         <reg32 offset="0x14010" name="SRC_TS" type="VIVM"/>
         <reg32 offset="0x14014" name="SRC_POS">
             <!-- In pixels, does not need to be tile-aligned. -->
@@ -139,7 +159,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield high="28" low="21" name="FORMAT" type="BLT_FORMAT"/>
             <bitfield high="30" low="29" name="TILING" type="BLT_TILING"/>
         </reg32>
-        <reg32 offset="0x14028" name="DEST_CONFIG" type="BLT_IMAGE_CONFIG"/>
+        <reg32 offset="0x14028" name="DEST_CONFIG" type="BLT_DEST_IMAGE_CONFIG"/>
         <reg32 offset="0x1402C" name="DEST_POS"> <!-- used with COPY_IMAGE and CLEAR_IMAGE -->
             <!-- In pixels, does not need to be tile-aligned. -->
             <bitfield high="15" low="0" name="X" type="uint"/>
