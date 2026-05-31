@@ -1164,6 +1164,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield pos="13" name="HDEPTH_AUTO_DISABLE" brief="Auto disable fast clear for hdepth"/>
             <bitfield pos="14" name="STENCIL_ENABLE"/> <!-- GC7000L - only required when depth compression is on? -->
             <bitfield pos="21" name="UNK21"/> <!-- Set by default in new context w/ Vivante kernel driver -->
+            <bitfield pos="30" name="64BPP_FORMAT"/>
         </reg32>
         <reg32 offset="0x01658" name="COLOR_STATUS_BASE" brief="Color tile status base address" value="0x00000000" type="VIVM"/>
         <reg32 offset="0x0165C" name="COLOR_SURFACE_BASE" brief="Color surface base address" value="0x00000000" type="VIVM"/>
@@ -1205,6 +1206,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
                 <bitfield pos="1" name="COLOR_AUTO_DISABLE"/>
                 <bitfield pos="2" name="COMPRESSION"/>
                 <bitfield high="6" low="3" name="COMPRESSION_FORMAT" type="COMPRESSION_FORMAT"/>
+                <bitfield pos="7" name="64BPP_FORMAT"/>
             </reg32>
             <reg32 offset="0x017C0" name="STATUS_BASE" type="VIVM"/>
             <reg32 offset="0x017E0" name="SURFACE_BASE" type="VIVM"/>
