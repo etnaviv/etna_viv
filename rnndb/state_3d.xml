@@ -173,6 +173,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <bitfield pos="27" name="UNK27"/>
         <bitfield pos="28" name="SUPER_TILED"/>
         <bitfield pos="29" name="UNK29"/>
+        <bitfield pos="30" name="SRGB"/>
     </bitset>
 
     <bitset name="VARYING_NUM_COMPONENTS">
