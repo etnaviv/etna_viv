@@ -264,7 +264,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <!-- Fencing -->
         <reg32 offset="0x007E8" name="FENCE_WAIT_DATA_LOW" brief="Lower 64 bit of fence data"/> <!-- HALTI5, FENCE_WAIT command checks against this -->
         <reg32 offset="0x007F4" name="FENCE_WAIT_DATA_HIGH" brief="Upper 64 bit of fence data"/> <!-- HALTI5 -->
-        <reg32 offset="0x007F8" name="ROBUSTNESS_UNK007F8" type="VIVM"/> <!-- ROBUSTNESS -->
+        <reg32 offset="0x007F8" name="INDEX_STREAM_ROBUSTNESS" type="VIVM" brief="Address of the last valid byte of the index buffer"/> <!-- ROBUSTNESS -->
         <reg32 offset="0x007FC" name="MULTI_CLUSTER_UNK007FC"/> <!-- MULTI_CLUSTER -->
     </stripe>
 
@@ -471,7 +471,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <reg32 offset="0x14600" name="BASE_ADDR" value="0x00000000" type="VIVM"/>
             <reg32 offset="0x14640" name="CONTROL" value="0x00000000" type="FE_VERTEX_STREAM_CONTROL"/>
             <reg32 offset="0x14680" name="VERTEX_DIVISOR" value="0x00000000"/>
-            <reg32 offset="0x146C0" name="ROBUSTNESS_UNK146C0" type="VIVM"/> <!-- ROBUSTNESS -->
+            <reg32 offset="0x146C0" name="ROBUSTNESS" type="VIVM" brief="Address of the last valid byte of the vertex buffer"/> <!-- ROBUSTNESS -->
         </stripe>
         <stripe name="GENERIC_ATTRIB" length="32" stride="4"> <!-- HALTI5 -->
             <reg32 offset="0x17800" name="CONFIG0">

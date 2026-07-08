@@ -913,7 +913,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield pos="26" name="DEPTH_TS_MODE" type="TS_MODE"/>
         </reg32>
         <reg32 offset="0x014C0" name="HALTI4_UNK014C0"/> <!-- HALTI4 -->
-        <reg32 offset="0x014C4" name="ROBUSTNESS_UNK014C4"/> <!-- ROBUSTNESS -->
+        <reg32 offset="0x014C4" name="DEPTH_ROBUSTNESS" type="VIVM" brief="Address of the last valid byte of the depth buffer"/> <!-- ROBUSTNESS -->
         <!-- Multiple render targets (color attachments).
              These figure output 1..N as index 0..N-1.
          -->
@@ -959,7 +959,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield high="31" low="16" name="A" type="float"/> <!-- 16-bit float -->
         </reg32>
 
-        <reg32 offset="0x149C0" name="ROBUSTNESS_UNK149C0" length="8" stride="4"/> <!-- ROBUSTNESS -->
+        <reg32 offset="0x149C0" name="RT_ROBUSTNESS" length="8" stride="4" type="VIVM" brief="Address of the last valid byte of the render target"/> <!-- ROBUSTNESS -->
     </stripe>
 
     <stripe name="CO" brief="Compose states">
