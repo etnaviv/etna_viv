@@ -207,6 +207,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield high="9" low="7" name="CLEAR_BPP"/> <!-- bytes per pixel-1, on CLEAR -->
             <bitfield pos="10" name="INPLACE_TS_MODE" type="TS_MODE"/>
             <bitfield pos="11" name="INPLACE_BOTH" brief="Use both dest TS clear values, interleaved"/>
+            <bitfield pos="12" name="DOWNSAMPLE_ONE_SAMPLE" brief="Downsample copies one sample instead of averaging"/>
             <bitfield high="17" low="15" name="INPLACE_BPP">
                 <value value="0" name="1"/>
                 <value value="1" name="2"/>
