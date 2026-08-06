@@ -89,6 +89,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <value value="7" name="YUY2"/><!-- only supported with YUY2_AVERAGING -->
         <value value="16" name="S8"/><!-- REG_RSS8 -->
         <value value="21" name="64BPP_CLEAR"/><!-- HALTI2 -->
+        <value value="22" name="A2R10G10B10"/>
         <value value="23" name="D32"/><!-- REG_RSS8 -->
         <value value="24" name="D16"/><!-- REG_RSS8 -->
     </enum>
