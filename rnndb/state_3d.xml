@@ -1121,6 +1121,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x016B4" name="UNK016B4" value="0x00000000"/>
         <reg32 offset="0x016B8" name="SINGLE_BUFFER">
             <bitfield pos="0" name="ENABLE"/> <!-- Has to do with SINGLE_BUFFER feature - enabling this only resolves first pipe address -->
+            <bitfield pos="1" name="DOWNSAMPLE_ONE_SAMPLE" brief="Downsample copies one sample instead of averaging"/>
         </reg32>
         <stripe name="PIPE" length="8" stride="4"> <!-- pixelPipes > 1 -->
             <!-- length="pixelPipes" -->
