@@ -33,10 +33,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
 
     <enum name="BLT_TILING">
         <value value="0" name="LINEAR"/>
-        <!-- Curiously, there seems to be no difference between SUPER_TILED and TILED
-             on this hardware (GC7000). I think the only difference are alignment/stride
-             constraints.
-         -->
+        <value value="1" name="TILED"/>
         <value value="3" name="SUPER_TILED"/>
     </enum>
     <enum name="BLT_FORMAT">
