@@ -124,6 +124,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <value value="30" name="A2B10G10R10UI"/>
         <value value="31" name="G8R8"/>
         <value value="35" name="R8"/> <!-- GC7000 -->
+        <value value="43" name="A8B8G8R8"/> <!-- PE_A8B8G8R8 -->
     </enum>
     <enum name="LOGIC_OP" brief="LogicOp">
         <value value="0" name="CLEAR"/>
