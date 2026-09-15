@@ -57,9 +57,9 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
              sampler state.
          -->
     </reg32>
-    <reg32 offset="0x8c" name="BORDER_COLOR_R" type="float"/>
+    <reg32 offset="0x8c" name="BORDER_COLOR_B" type="float"/>
     <reg32 offset="0x90" name="BORDER_COLOR_G" type="float"/>
-    <reg32 offset="0x94" name="BORDER_COLOR_B" type="float"/>
+    <reg32 offset="0x94" name="BORDER_COLOR_R" type="float"/>
     <reg32 offset="0x98" name="BORDER_COLOR_A" type="float"/>
 </domain>
 
