@@ -257,7 +257,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x0086C" name="INST_ADDR" type="VIVM" brief="Memory address of shader instructions, must be aligned to 0x100"/> <!-- ICACHE -->
         <reg32 offset="0x00870" name="HALTI5_OUTPUT_COUNT"> <!-- HALTI5 -->
             <bitfield high="9" low="0" name="COUNT"/> <!-- Same as VS.OUTPUT_COUNT -->
-	    <bitfield high="18" low="8" name="B"/> <!-- = COUNT*0x10 -->
+            <bitfield high="18" low="8" name="SIZE"/> <!-- COUNT * VS.VERTEX_CACHE_CONFIG.VERTEX_BATCH_SIZE -->
 	</reg32>
         <!-- "new shader instruction PC registers (20 bit)" -->
         <reg32 offset="0x00874" name="NEWRANGE_LOW"/> <!-- HALTI5 || ICACHE "VS Start PC register" -->
