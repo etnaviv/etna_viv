@@ -84,6 +84,29 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <value value="1" name="CENTROID"/>
     </enum>
 
+    <enum name="PROBE_MODULE">
+        <value value="0" name="FE"/>
+        <value value="1" name="VS"/>
+        <value value="2" name="PA"/>
+        <value value="3" name="SE"/>
+        <value value="4" name="RA"/>
+        <value value="5" name="PS"/>
+        <value value="6" name="TX"/>
+        <value value="7" name="PE"/>
+        <value value="8" name="MC_COLOR"/>
+        <value value="9" name="MC_DEPTH"/>
+        <value value="10" name="HI0"/>
+        <value value="11" name="HI1"/>
+        <value value="12" name="L2"/>
+    </enum>
+
+    <enum name="PROBE_CMD">
+        <value value="0" name="DUMP"/>
+        <value value="1" name="RESET"/>
+        <value value="2" name="PAUSE"/>
+        <value value="3" name="RUN"/>
+    </enum>
+
     <bitset name="VARYING_SEMANTIC">
         <bitfield high="1" low="0" name="MODE" type="VARYING_INTERPOLATION_MODE"/>
         <bitfield pos="2" name="LOCATION" type="VARYING_LOCATION"/>
@@ -391,6 +414,12 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x03860" name="BUG_FIXES" value="0x00000006"/> <!-- BUG_FIXES18 -->
         <reg32 offset="0x03868" name="FENCE_OUT_ADDRESS" type="VIVM"/> <!-- HALTI5 -->
         <reg32 offset="0x0386C" name="FENCE_OUT_DATA_LOW"/> <!-- HALTI5 -->
+        <reg32 offset="0x03870" name="PROBE_ADDRESS" type="VIVM"/> <!-- REG_Probe -->
+        <reg32 offset="0x03878" name="PROBE_SELECT"> <!-- REG_Probe -->
+            <bitfield name="COUNTER" low="0" high="15"/>
+            <bitfield name="MODULE" low="16" high="20" type="PROBE_MODULE"/>
+            <bitfield name="CMD" low="24" high="25" type="PROBE_CMD"/>
+        </reg32>
         <reg32 offset="0x03884" name="USC_CONTROL"> <!-- HALTI5 -->
             <bitfield high="2" low="0" name="L1_CACHE_RATIO"/>
             <bitfield high="11" low="8" name="ATTRIB_CACHE_RATIO"/> <!-- MULTI_CLUSTER -->
