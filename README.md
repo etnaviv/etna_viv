@@ -8,8 +8,8 @@ not necessary to use this repository when building the driver.**
 
 Instead, use:
 
-- https://cgit.freedesktop.org/mesa/mesa/ - Mesa driver (etnaviv was upstreamed)
-- https://cgit.freedesktop.org/mesa/drm/ - Libdrm (etnaviv was upstreamed)
+- https://gitlab.freedesktop.org/mesa/mesa - Mesa driver (etnaviv was upstreamed)
+- https://gitlab.freedesktop.org/mesa/libdrm - Libdrm (etnaviv was upstreamed)
 - A recent mainline linux kernel (etnaviv was upstreamed)
 
 SoCs with Vivante GPU
@@ -30,8 +30,8 @@ ARM-based:
 
 MIPS-based:
 - Ingenic JZ4760 has a GC200 (2D only)
-- Ingenic JZ4770 has a GC860: [GCW Zero](http://www.gcw-zero.com)
-- Loongson 7A1000 has a GC1000: [7a1000](http://www.loongson.cn/product/cpu/qp/Loongson7A1000.html)
+- Ingenic JZ4770 has a GC860: [GCW Zero](https://en.wikipedia.org/wiki/GCW_Zero)
+- Loongson 7A1000 has a GC1000: [7a1000](https://www.loongson.cn/product/show?id=14)
 
 See also [wikipedia](https://en.wikipedia.org/wiki/Vivante_Corporation).
 
@@ -170,7 +170,7 @@ These have been moved to https://github.com/etnaviv/vivante_kernel_drivers
 Envytools fork
 ---------------
 
-[Envytools](https://github.com/pathscale/envytools) is a set of tools aimed at developers of the open source
+[Envytools](https://github.com/envytools/envytools) is a set of tools aimed at developers of the open source
 NVIDIA driver Nouveau, however some parts such as rnndb can be applied more generally. The repository
 contains a slightly modified subset of envytools for header generation from
 the state / command stream / ISA rnndb files, so they can be used from the C code (etna), build with
