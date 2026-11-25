@@ -27,6 +27,8 @@ ARM-based:
 - Freescale i.MX6 DualLite and Solo have a GC880 + GC320
 - Freescale i.MX6 SoloLite has GC320 + GC355 (no 3D)
 - Actions Semiconductor ATM7029 has a GC1000
+- STMicroelectronics STM32MP157 has a GC7000 Nano (MESA3D model GC400)
+- STMicroelectronics STM32MP257 has a GC8000 UL
 
 MIPS-based:
 - Ingenic JZ4760 has a GC200 (2D only)
