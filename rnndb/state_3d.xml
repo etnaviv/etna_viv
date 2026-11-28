@@ -377,13 +377,13 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
         <reg32 offset="0x00948" name="WORKGROUP_COUNT_Z" value="0x00000000"/> <!-- SHADER_ENHANCEMENTS2 -->
 
         <reg32 offset="0x0094C" name="WORKGROUP_SIZE_X" value="0x00000000"> <!-- SHADER_ENHANCEMENTS2 -->
-            <doc>Set to workgroup size x - 1</doc>
+            <bitfield high="9" low="0" name="SIZE" brief="Size of work group minus one"/>
         </reg32>
         <reg32 offset="0x00950" name="WORKGROUP_SIZE_Y" value="0x00000000"> <!-- SHADER_ENHANCEMENTS2 -->
-            <doc>Set to workgroup size y - 1</doc>
+            <bitfield high="9" low="0" name="SIZE" brief="Size of work group minus one"/>
         </reg32>
         <reg32 offset="0x00954" name="WORKGROUP_SIZE_Z" value="0x00000000"> <!-- SHADER_ENHANCEMENTS2 -->
-            <doc>Set to workgroup size z - 1</doc>
+            <bitfield high="9" low="0" name="SIZE" brief="Size of work group minus one"/>
         </reg32>
 
         <reg32 offset="0x00958" name="GLOBAL_SCALE_X"/> <!-- HALTI5 -->
