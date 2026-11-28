@@ -44,6 +44,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
     <value value="13" name="CHIP_SELECT" brief="Chip select mask"/>
     <value value="15" name="WAIT_FENCE" brief="?"/> <!-- HALTI5 -->
     <value value="16" name="DRAW_INDIRECT" brief="Draw indirect"/>
+    <value value="17" name="COMPUTE_INDIRECT" brief="Compute indirect"/> <!-- HALTI5 -->
     <value value="19" name="SNAP_PAGES" brief="?"/> <!-- SNAPPAGE_CMD && SNAPPAGE_CMD_FIX -->
 </enum>
 
@@ -335,6 +336,18 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             </bitfield>
             <bitfield pos="8" name="INDEXED"/>
             <bitfield high="3" low="0" name="TYPE" type="PRIMITIVE_TYPE"/>
+        </reg32>
+        <reg32 offset="0x00004" name="ADDRESS" type="VIVM"/>
+    </stripe>
+
+    <!-- Compute indirect, according to structure in memory. Starts the thread
+         walker, no CL.KICKER follows.
+    -->
+    <stripe name="COMPUTE_INDIRECT" varset="FE_OPCODE" variants="COMPUTE_INDIRECT"> <!-- HALTI5 -->
+        <reg32 offset="0x00000" name="HEADER">
+            <bitfield high="31" low="27" name="OP">
+                <value value="17" name="COMPUTE_INDIRECT"/>
+            </bitfield>
         </reg32>
         <reg32 offset="0x00004" name="ADDRESS" type="VIVM"/>
     </stripe>

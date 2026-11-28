@@ -276,6 +276,7 @@ xsi:schemaLocation="http://nouveau.freedesktop.org/ rules-ng.xsd">
             <bitfield high="15" low="8" name="VERTEX_ID_REG" type="uint"/>
             <bitfield high="23" low="16" name="INSTANCE_ID_REG" type="uint"/>
         </reg32>
+        <reg32 offset="0x007CC" name="COMPUTE_INDIRECT_UNIFORM" brief="Uniform that COMPUTE_INDIRECT writes the work group counts to"/> <!-- HALTI5 -->
         <reg32 offset="0x007D0" name="HALTI5_UNK007D0" length="2" stride="4"/> <!-- HALTI5 -->
         <reg32 offset="0x007D8" name="HALTI5_UNK007D8"/> <!-- HALTI5 -->
         <!-- Asynchronous command execution -->
